@@ -26,6 +26,12 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
+  headerText: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    marginTop: 25,
+    marginLeft: 20,
+  },
   BottomContainer: {
     flex: 3,
     backgroundColor: COLORS.milkWhite,
@@ -62,7 +68,7 @@ const App = () => {
       </View>
       <View style={styles.BottomContainer} />
       <View style={styles.contentWrapper}>
-        <MyAppText text="welcome" />
+        <Text style={styles.headerText}>Welcome</Text>
       </View>
     </View>
   );
