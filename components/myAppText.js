@@ -15,10 +15,4 @@ const MyAppText = ({text}) => {
   );
 };
 
-// const MyAppHeaderText = ({text}) => {
-//     return(
-//         MyAppText
-//     )
-// }
-
 export default MyAppText;

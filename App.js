@@ -7,33 +7,27 @@
  */
 
 import React, {useState} from 'react';
-import {Text, StyleSheet, View, Image} from 'react-native';
+import {Text, StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from './assets/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MyAppText from './components/myAppText';
+import Header from './components/header';
+import TaskCountCard from './components/tasksCountCard';
 
 const styles = StyleSheet.create({
   container: {
     height: '100%',
   },
-  Header: {
-    flexDirection: 'row',
-    alignContent: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: COLORS.darkGrey,
-    height: '30%',
-    paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
   headerText: {
-    fontSize: 35,
+    fontSize: 30,
+    color: COLORS.darkGrey,
     fontWeight: 'bold',
     marginTop: 25,
     marginLeft: 20,
   },
   BottomContainer: {
-    flex: 3,
+    flex: 2,
     backgroundColor: COLORS.milkWhite,
   },
   contentWrapper: {
@@ -44,33 +38,96 @@ const styles = StyleSheet.create({
     height: '100%',
     marginLeft: 20,
     marginRight: 20,
+    zIndex: 10,
   },
-  logo: {
-    width: 40,
-    height: 40,
+  cardsHolder: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  startNewTaskBtn: {
+    backgroundColor: COLORS.blackish,
+    width: '80%',
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    elevation: 2,
   },
 });
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.Header}>
-        <Image
-          style={styles.logo}
-          source={require('./assets/logo/IW_logo.png')}
-        />
-        <View>
-          <Text>
-            <Icon name="search" color="#fff" size={30} />;
-            <Icon name="filter-list" color="#fff" size={30} />;
-          </Text>
+    <SafeAreaProvider>
+      <SafeAreaView>
+        <View style={styles.container}>
+          <Header />
+          <View style={styles.BottomContainer} />
+          <View style={styles.contentWrapper}>
+            <Text style={styles.headerText}>Welcome</Text>
+            <View style={styles.cardsHolder}>
+              <TaskCountCard count="0" name="Total Tasks" />
+              <TaskCountCard count="0" name="Active Tasks" />
+              <TaskCountCard count="0" name=" Tasks Done" />
+              <TaskCountCard count="0" name="Active High Priority" />
+            </View>
+            <View
+              style={{
+                height: '20%',
+                margin: 25,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: 40,
+                }}>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    fontSize: 20,
+                    margin: 15,
+                    color: COLORS.darkGrey,
+                  }}>
+                  NOTHING HERE
+                </Text>
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    fontSize: 15,
+                    color: COLORS.lightGrey,
+                  }}>
+                  Just like your crush's replies
+                </Text>
+              </View>
+              <TouchableOpacity style={styles.startNewTaskBtn}>
+                <Text style={{color: COLORS.milkWhite}}>
+                  START WITH A NEW TASK
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity
+              style={{
+                position: 'absolute',
+                backgroundColor: COLORS.blackish,
+                bottom: 100,
+                right: 20,
+                width: 70,
+                height: 70,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 100,
+              }}>
+              <Icon name="add" color="#fff" size={25} />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.BottomContainer} />
-      <View style={styles.contentWrapper}>
-        <Text style={styles.headerText}>Welcome</Text>
-      </View>
-    </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
