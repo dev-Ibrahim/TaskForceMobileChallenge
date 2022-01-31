@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
-import Select, {SelectItem} from '@redmin_delishaj/react-native-select';
-const data = [
-  {text: 'High', value: 1},
-  {text: 'Medium', value: 2},
-  {text: 'Low', value: 3},
-];
+
 import {
   Text,
   StyleSheet,
@@ -15,7 +10,8 @@ import {
 } from 'react-native';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../assets/colors';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Formik} from 'formik';
+import MyAppText from '../components/myAppText';
 
 const styles = StyleSheet.create({
   headerText: {
@@ -31,22 +27,40 @@ const styles = StyleSheet.create({
 });
 
 const AddTask = () => {
-  const [selectedItem, setSelectedItem] = useState(3);
+  const [selectedItem, setSelectedItem] = useState();
   return (
     <View style={{backgroundColor: '#fff', height: '100%'}}>
       <Text style={styles.headerText}>New Task</Text>
-      <View style={{margin: 20}}>
-        <Text>Title</Text>
-        <TextInput placeholder="Task title(140 Characters)" />
-        <Text>Description</Text>
-        <TextInput placeholder="240 Characters" />
-        <Text>Priority</Text>
-        <Select
-          data={data}
-          onSelect={value => setSelectedItem(value)}
-          value={selectedItem}
-        />
-      </View>
+      <Formik
+        initialValues={{title: '', description: '', priority: ''}}
+        onSubmit={values => {
+          console.log(values);
+        }}>
+        {props => (
+          <View style={{margin: 20}}>
+            <Text>Title</Text>
+            <TextInput
+              placeholder="Task title(140 Characters)"
+              onChangeText={props.handleChange('title')}
+              value={props.values.title}
+            />
+            <Text>Description</Text>
+            <TextInput
+              multiline
+              numberOfLines={5}
+              placeholder="240 Characters"
+              onChangeText={props.handleChange('description')}
+              value={props.values.description}
+            />
+            <Text>Priority</Text>
+            <TouchableOpacity
+              style={{backgroundColor: COLORS.blackish, width: '30%'}}
+              onPress={props.handleSubmit}>
+              <MyAppText text={'Create task'} textColor={'#fff'} />
+            </TouchableOpacity>
+          </View>
+        )}
+      </Formik>
     </View>
   );
 };

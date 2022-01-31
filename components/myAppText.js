@@ -2,12 +2,13 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-const MyAppText = ({text}) => {
+const MyAppText = ({text, textColor}) => {
   return (
     <Text
       style={{
         fontFamily: 'Montserrat-Regular',
         fontSize: 20,
+        color: textColor,
         fontWeight: 'bold',
       }}>
       {text}
