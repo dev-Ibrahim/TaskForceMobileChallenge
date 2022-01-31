@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {COLORS} from '../assets/colors';
@@ -14,49 +14,43 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Header from '../components/header';
 import TaskCountCard from '../components/tasksCountCard';
 
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-  },
-  headerText: {
-    fontSize: 30,
-    color: COLORS.darkGrey,
-    fontWeight: 'bold',
-    marginTop: 25,
-    marginLeft: 20,
-  },
-  BottomContainer: {
-    flex: 2,
-    backgroundColor: COLORS.milkWhite,
-  },
-  contentWrapper: {
-    position: 'absolute',
-    backgroundColor: '#fff',
-    top: 80,
-    width: '90%',
-    height: '100%',
-    marginLeft: 20,
-    marginRight: 20,
-    zIndex: 10,
-  },
-  cardsHolder: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  startNewTaskBtn: {
-    backgroundColor: COLORS.blackish,
-    width: '80%',
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-    elevation: 2,
-  },
-});
-
 const HomeScreen = ({navigation}) => {
+  const PRIORITY = {
+    high: 1,
+    medium: 2,
+    low: 3,
+  };
+  const {task, setTask} = useState([
+    {
+      title: 'Buy hand sanitizers',
+      description: 'Call to confirm with quantity',
+      priority: PRIORITY.medium,
+      dateCreated: Date.now,
+      dateModified: Date.now,
+    },
+    {
+      title: 'CAll awesomity',
+      description: 'Just call',
+      priority: PRIORITY.low,
+      dateCreated: Date.now,
+      dateModified: Date.now,
+    },
+    {
+      title: 'Submit challenge',
+      description: 'Just do it',
+      priority: PRIORITY.high,
+      dateCreated: Date.now,
+      dateModified: Date.now,
+    },
+    {
+      title: 'Submit challenge',
+      description: 'Just do it',
+      priority: PRIORITY.high,
+      dateCreated: Date.now,
+      dateModified: Date.now,
+    },
+  ]);
+
   return (
     <SafeAreaProvider>
       <SafeAreaView>
@@ -131,5 +125,47 @@ const HomeScreen = ({navigation}) => {
     </SafeAreaProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+  },
+  headerText: {
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 30,
+    color: COLORS.darkGrey,
+    marginTop: 25,
+    marginLeft: 20,
+  },
+  BottomContainer: {
+    flex: 2,
+    backgroundColor: COLORS.milkWhite,
+  },
+  contentWrapper: {
+    position: 'absolute',
+    backgroundColor: '#fff',
+    top: 80,
+    width: '90%',
+    height: '100%',
+    marginLeft: 20,
+    marginRight: 20,
+    zIndex: 10,
+  },
+  cardsHolder: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  startNewTaskBtn: {
+    backgroundColor: COLORS.blackish,
+    width: '80%',
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    elevation: 2,
+  },
+});
 
 export default HomeScreen;
