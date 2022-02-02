@@ -4,8 +4,8 @@ import {COLORS} from '../assets/colors';
 
 const styles = StyleSheet.create({
   TaskCountCard: {
-    width: 145,
-    height: 100,
+    width: 90,
+    height: 90,
     backgroundColor: '#fff',
     elevation: 3,
     shadowColor: '#000',
@@ -20,7 +20,7 @@ const TaskCountCard = ({count, name}) => {
       <Text style={{color: COLORS.green, fontSize: 30, fontWeight: 'bold'}}>
         {count}
       </Text>
-      <Text style={{fontWeight: 'bold'}}>{name}</Text>
+      <Text style={{fontWeight: 'bold', fontSize: 12}}>{name}</Text>
     </View>
   );
 };
